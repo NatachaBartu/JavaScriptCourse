@@ -1,4 +1,4 @@
-// const p = document.querySelector('p');
+//const p = document.querySelector("p");
 // const imgs = document.querySelectorAll('.item img');
 // const item2 = document.querySelector('.item2');
 // const item2Image = item2.querySelector('img');
@@ -22,19 +22,19 @@
 // pizzaList.insertAdjacentText('beforeend', '🍕');
 
 // Classes!
-const pic = document.querySelector('.nice');
-pic.classList.add('open');
-pic.classList.remove('cool');
+const pic = document.querySelector(".nice");
+pic.classList.add("open");
+pic.classList.remove("cool");
 
 console.log(pic.classList);
 
 function toggleRound() {
-  pic.classList.toggle('round');
+  pic.classList.toggle("round");
 }
 
-pic.addEventListener('click', toggleRound);
+pic.addEventListener("click", toggleRound);
 
-pic.alt = 'Cute Pup'; // setter
+pic.alt = "Cute Pup"; // setter
 console.log(pic.alt); // getter
 console.log(pic.naturalWidth); // getter
 pic.width = 200;
@@ -42,9 +42,9 @@ pic.width = 200;
 // pic.setAttribute('wes-is-cool', 'REALLY CUTE PUP');
 // console.log(pic.getAttribute('alt'));
 
-const custom = document.querySelector('.custom');
+const custom = document.querySelector(".custom");
 console.log(custom.dataset);
 
-custom.addEventListener('click', function() {
+custom.addEventListener("click", function () {
   alert(`Welcome ${custom.dataset.name} ${custom.dataset.last} `);
 });
