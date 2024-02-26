@@ -32,3 +32,14 @@ signupForm.name.addEventListener("focus", logEvent);
 // keydown
 // focus
 // blur
+
+const photo = document.querySelector(".photo");
+
+function handlePhotoClick(e) {
+  if (e.type === "click" || e.key === "enter") {
+    console.log("you clicked the photo");
+  }
+}
+
+photo.addEventListener("click", handlePhotoClick);
+photo.addEventListener("click", handlePhotoClick);
