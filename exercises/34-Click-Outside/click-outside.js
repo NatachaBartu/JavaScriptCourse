@@ -24,13 +24,13 @@ function handleCardBtnClick(event) {
   modalOuter.classList.add("open");
 }
 
-cardBtn.forEach((button) =>
-  button.addEventListener("click", handleCardBtnClick)
-);
-
 function closeModal() {
   modalOuter.classList.remove("open");
 }
+
+cardBtn.forEach((button) =>
+  button.addEventListener("click", handleCardBtnClick)
+);
 
 modalOuter.addEventListener("click", function (event) {
   const isOutside = !event.target.closest(".modal-inner");
