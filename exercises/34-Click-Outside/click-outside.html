@@ -86,6 +86,12 @@
         min-height: 200px;
         background: white;
         border-radius: 5px;
+        transform: translateY(-200%);
+        transition: transform 2s;
+      }
+
+      .modal-outer.open .modal-inner {
+        transform: translateY(0);
       }
 
       .modal-outer img {
