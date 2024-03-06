@@ -1,17 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title> </title>
+    <link rel="stylesheet" href="../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>
+  <body>
+    <script>
+      const names = ["wes", "kait", "snickers"];
+      //create a mutable array by pushing items into the existent array
+      // names.push("lius");
+      // console.log(names);
 
-  </title>
-  <link rel="stylesheet" href="../base.css">
-</head>
+      //add new element into the array but not mutate it
+      // const newArrayNotMutate = [...names, "carl"];
+      // console.log(newArrayNotMutate);
+      // console.log(names);
 
-<body>
+      //add element into first of element of array
+      //names.unshift("poppy");
+      // const addToFrontArray = ["poppy", ...names];
+      // console.log(addToFrontArray);
+      // console.log(names);
 
-</body>
+      //add element into middle of the array
+      // const bikes = ["bianchi", "miele", "panasonic", "miyata"];
+      // const newBikes = [...bikes.slice(0, 2), "benoto", ...bikes.slice(2)];
+      // console.log(newBikes);
 
+      // //remove item from middle
+      // const newBike2 = [...newBikes.slice(0, 3), ...newBikes.slice(4)];
+      // console.log(newBike2);
+
+      const comments = [
+        { text: "Cool Beans", id: 123 },
+        { text: "Love this", id: 133 },
+        { text: "Neato", id: 233 },
+        { text: "good bikes", id: 333 },
+        { text: "so good", id: 433 },
+      ];
+
+      function deleteComment(id, comment) {
+        // first find the index of the item in the array
+        const commentIndex = comments.findIndex((comment) => comment.id === id);
+        // make a new array without that item in it
+        return [
+          ...comments.slice(0, commentIndex),
+          ...comments.slice(commentIndex + 1),
+        ];
+        // return our new array
+      }
+
+      /*
+      //access the first name of the array
+      console.log(names[0]);
+      //get the size of the array
+      console.log(names.length);
+      //select last element of array
+      console.log(names[names.length - 1]);
+
+      //MUTATION METHOD
+      const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+      //const numbersBackwards = numbers.reverse();
+      //console.log(numbersBackwards);
+      //console.log(numbers);
+      const numbersReversed = [...numbers];
+      numbersReversed.reverse();
+      console.log(numbersReversed);
+      console.log(numbers);
+
+      //IMMUTABLE
+      //the method not change the original data
+      // const pizzaSlice = numbers.slice(2, 4);
+      // console.log(pizzaSlice);
+      // console.log(numbers);
+
+      */
+    </script>
+  </body>
 </html>
