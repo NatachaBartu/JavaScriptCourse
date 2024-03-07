@@ -245,7 +245,7 @@
         return maxPrice - minPrice;
       });
       //turn the array into object again
-      console.table(Object.fromEntries(sortPrices));
+      //console.table(Object.fromEntries(sortPrices));
 
       //sortingfunction
       const numbers = [
@@ -271,6 +271,37 @@
       /*
         Looping Methods (next)
       */
+      function logTopping(toppings, index, originalArray) {
+        //log the next topping if there is one
+        const nextTopping = originalArray[index + 1];
+
+        //log the prev topping if there is one
+        const prevTopping = originalArray[index - 1];
+        //log the topping
+        console.log(toppings);
+
+        //ternary for loop the elements on array
+        prevTopping ? console.log(prevTopping) : null;
+        nextTopping ? console.log(nextTopping) : null;
+
+        //loop over the elements in array
+        // if (nextTopping) {
+        //   console.log(nextTopping);
+        // }
+
+        //if its the last item in the array, say good bye
+        index === originalArray.length - 1
+          ? console.log("Goodbye")
+          : console.log("Getting the next Topping");
+
+        console.log("--------------🎗-----------------");
+      }
+
+      toppings.forEach(logTopping);
+
+      // toppings.forEach((toppings) => {
+      //   console.log(toppings);
+      // });
     </script>
   </body>
 </html>
