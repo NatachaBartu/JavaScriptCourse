@@ -1,20 +1,319 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Reduce!</title>
+    <link rel="stylesheet" href="../../base.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Reduce!</title>
-  <link rel="stylesheet" href="../../base.css">
-</head>
+  <body>
+    <script>
+      // Grab all the text from a web page
 
-<body>
-  <script>
-    // Grab all the text from a web page
-    // Count how many times each letter and number occurs
+      const text = `
+          Skip to main content
+      Skip to search
+      Skip to select language
+      Get real-time assistance with your coding queries. Try AI Help now!
 
 
-  </script>
-</body>
+      OPEN MAIN MENU
+      References
+      Array.prototype.reverse()
 
+      English (US)
+      Filter sidebar
+
+      In this article
+
+      Try it
+      Syntax
+      Description
+      Examples
+      Specifications
+      Browser compatibility
+      See also
+      Standard built-in objects
+      Array
+      Constructor
+      Array() constructor
+      Properties
+      Array[@@species]
+      Array.prototype[@@unscopables]
+      Array: length
+      Methods
+      Array.prototype[@@iterator]()
+      Array.prototype.at()
+      Array.prototype.concat()
+      Array.prototype.copyWithin()
+      Array.prototype.entries()
+      Array.prototype.every()
+      Array.prototype.fill()
+      Array.prototype.filter()
+      Array.prototype.find()
+      Array.prototype.findIndex()
+      Array.prototype.findLast()
+      Array.prototype.findLastIndex()
+      Array.prototype.flat()
+      Array.prototype.flatMap()
+      Array.prototype.forEach()
+      Array.from()
+      Array.fromAsync()
+      Array.prototype.includes()
+      Array.prototype.indexOf()
+      Array.isArray()
+      Array.prototype.join()
+      Array.prototype.keys()
+      Array.prototype.lastIndexOf()
+      Array.prototype.map()
+      Array.of()
+      Array.prototype.pop()
+      Array.prototype.push()
+      Array.prototype.reduce()
+      Array.prototype.reduceRight()
+      Array.prototype.reverse()
+      Array.prototype.shift()
+      Array.prototype.slice()
+      Array.prototype.some()
+      Array.prototype.sort()
+      Array.prototype.splice()
+      Array.prototype.toLocaleString()
+      Array.prototype.toReversed()
+      Array.prototype.toSorted()
+      Array.prototype.toSpliced()
+      Array.prototype.toString()
+      Array.prototype.unshift()
+      Array.prototype.values()
+      Array.prototype.with()
+      Inheritance
+      Function
+      Constructor
+      Properties
+      Methods
+      Object
+      Properties
+      Methods
+      Array.prototype.reverse()
+
+      The reverse() method of Array instances reverses an array in place and returns the reference to the same array, the first array element now becoming the last, and the last array element becoming the first. In other words, elements order in the array will be turned towards the direction opposite to that previously stated.
+
+      To reverse the elements in an array without mutating the original array, use toReversed().
+
+      Try it
+
+      Syntax
+      JS
+      Copy to Clipboard
+      reverse()
+      Parameters
+      None.
+
+      Return value
+      The reference to the original array, now reversed. Note that the array is reversed in place, and no copy is made.
+
+      Description
+      The reverse() method transposes the elements of the calling array object in place, mutating the array, and returning a reference to the array.
+
+      The reverse() method preserves empty slots. If the source array is sparse, the empty slots' corresponding new indices are deleted and also become empty slots.
+
+      The reverse() method is generic. It only expects the this value to have a length property and integer-keyed properties. Although strings are also array-like, this method is not suitable to be applied on them, as strings are immutable.
+
+      Examples
+      Reversing the elements in an array
+      The following example creates an array items, containing three elements, then reverses the array. The call to reverse() returns a reference to the reversed array items.
+
+      JS
+      Copy to Clipboard
+      const items = [1, 2, 3];
+      console.log(items); // [1, 2, 3]
+
+      items.reverse();
+      console.log(items); // [3, 2, 1]
+      The reverse() method returns the reference to the same array
+      The reverse() method returns reference to the original array, so mutating the returned array will mutate the original array as well.
+
+      JS
+      Copy to Clipboard
+      const numbers = [3, 2, 4, 1, 5];
+      const reversed = numbers.reverse();
+      // numbers and reversed are both in reversed order [5, 1, 4, 2, 3]
+      reversed[0] = 5;
+      console.log(numbers[0]); // 5
+      In case you want reverse() to not mutate the original array, but return a shallow-copied array like other array methods (e.g. map()) do, use the toReversed() method. Alternatively, you can do a shallow copy before calling reverse(), using the spread syntax or Array.from().
+
+      JS
+      Copy to Clipboard
+      const numbers = [3, 2, 4, 1, 5];
+      // [...numbers] creates a shallow copy, so reverse() does not mutate the original
+      const reverted = [...numbers].reverse();
+      reverted[0] = 5;
+      console.log(numbers[0]); // 3
+      Using reverse() on sparse arrays
+      Sparse arrays remain sparse after calling reverse(). Empty slots are copied over to their respective new indices as empty slots.
+
+      JS
+      Copy to Clipboard
+      console.log([1, , 3].reverse()); // [3, empty, 1]
+      console.log([1, , 3, 4].reverse()); // [4, 3, empty, 1]
+      Calling reverse() on non-array objects
+      The reverse() method reads the length property of this. It then visits each property having an integer key between 0 and length / 2, and swaps the two corresponding indices on both ends, deleting any destination property for which the source property did not exist.
+
+      JS
+      Copy to Clipboard
+      const arrayLike = {
+        length: 3,
+        unrelated: "foo",
+        2: 4,
+        3: 33, // ignored by reverse() since length is 3
+      };
+      console.log(Array.prototype.reverse.call(arrayLike));
+      // { 0: 4, 3: 33, length: 3, unrelated: 'foo' }
+      // The index 2 is deleted because there was no index 0 present originally
+      // The index 3 is unchanged since the length is 3
+      Specifications
+      Specification
+      ECMAScript Language Specification
+      # sec-array.prototype.reverse
+      Browser compatibility
+      Report problems with this compatibility data on GitHub
+      desktop	mobile	server
+      Chrome
+      Edge
+      Firefox
+      Opera
+      Safari
+      Chrome Android
+      Firefox for Android
+      Opera Android
+      Safari on iOS
+      Samsung Internet
+      WebView Android
+      Deno
+      Node.js
+      reverse
+
+      1
+      Toggle history
+      12
+      Toggle history
+      1
+      Toggle history
+      4
+      Toggle history
+      1
+      Toggle history
+      18
+      Toggle history
+      4
+      Toggle history
+      10.1
+      Toggle history
+      1
+      Toggle history
+      1.0
+      Toggle history
+      4.4
+      Toggle history
+      1.0
+      Toggle history
+      0.10.0
+      Toggle history
+      Legend
+      Tip: you can click/tap on a cell for more information.
+
+      Full support
+      Full support
+      See also
+      Polyfill of Array.prototype.reverse in core-js
+      Indexed collections guide
+      Array
+      Array.prototype.join()
+      Array.prototype.sort()
+      Array.prototype.toReversed()
+      TypedArray.prototype.reverse()
+      Help improve MDN
+
+      Was this page helpful to you?
+
+      Yes
+
+      No
+      Learn how to contribute.
+      This page was last modified on Sep 7, 2023 by MDN contributors.
+      View this page on GitHub• Report a problem with this content
+      IONOS
+      Mozilla ads
+      Don't want to see ads?
+      Your blueprint for a better internet.
+
+      MDN on Mastodon
+      MDN on X (formerly Twitter)
+      MDN on GitHub
+      MDN Blog RSS Feed
+      MDN
+
+      About
+      Blog
+      Careers
+      Advertise with us
+      Support
+
+      Product help
+      Report an issue
+      Our communities
+
+      MDN Community
+      MDN Forum
+      MDN Chat
+      Developers
+
+      Web Technologies
+      Learn Web Development
+      MDN Plus
+      Hacks Blog
+      Website Privacy Notice
+      Cookies
+      Legal
+      Community Participation Guidelines
+      Visit Mozilla Corporation’s not-for-profit parent, the Mozilla Foundation.
+      Portions of this content are ©1998–2024 by individual mozilla.org contributors. Content available under a Creative Commons license.
+
+          `;
+      // Count how many times each letter and number occurs
+
+      //return somente elements from a - z. - cleaning text
+      function isValidChar(char) {
+        return char.match(/[a-z0-9]/i);
+      }
+
+      const lowerCase = (char) => char.toLowerCase();
+
+      function countReducer(counts, char) {
+        counts[char]
+          ? // if exists
+            (counts[char] = counts[char] + 1)
+          : // if does not exist
+            (counts[char] = 1);
+
+        return counts;
+      }
+
+      const resultText = text
+        .split(" ")
+        .filter(isValidChar)
+        .map(lowerCase)
+        .reduce(countReducer, {});
+
+      //console.log(resultText);
+
+      //sort what letter is more popular and less popular
+      function sortByValue(a, b) {
+        return a[1] - b[1];
+      }
+
+      const sortedResult = Object.entries(resultText).sort(sortByValue);
+      console.log(sortedResult);
+    </script>
+  </body>
 </html>
