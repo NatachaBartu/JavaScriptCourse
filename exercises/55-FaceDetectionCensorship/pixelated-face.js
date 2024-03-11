@@ -4,9 +4,14 @@ const canvas = document.querySelector(".video");
 const ctx = canvas.getContext("2d");
 
 const faceCanvas = document.querySelector(".face");
-const faceCtx = canvas.getContext("2d");
+const faceCtx = faceCanvas.getContext("2d");
 
 const faceDetector = new window.FaceDetector();
+
+const options = {
+  SIZE: 10,
+  SCALE: 1.35,
+};
 
 //write a functio that populate teh users video
 async function populateVideo() {
@@ -29,6 +34,7 @@ async function populateVideo() {
 async function detect() {
   const faces = await faceDetector.detect(video);
   faces.forEach(drawFace);
+  faces.forEach(censor);
 
   //ask the browser when the next animation frame is, and tell it to run detect for us
   requestAnimationFrame(detect);
@@ -42,4 +48,36 @@ function drawFace(face) {
   ctx.lineWidth = 2;
 }
 
+function censor({ boundingBox: face }) {
+  //draw the small face
+  faceCtx.drawImage(
+    //5 source args
+    video,
+    face.x,
+    face.y,
+    face.width,
+    face.height,
+    //4 draw args
+    face.x,
+    face.y,
+    options.SIZE,
+    options.SIZE
+  );
+  // draw the small face back on, but scale up
+
+  const width = face.width * options.SCALE;
+  const height = face.height * options.SCALE;
+  faceCtx.drawImage(
+    faceCanvas, // source
+    face.x, // where do we start the source pull from?
+    face.y,
+    options.SIZE,
+    options.SIZE,
+    // Drawing args
+    face.x - (width - face.width) / 2,
+    face.y - (height - face.height) / 2,
+    width,
+    height
+  );
+}
 populateVideo().then(detect);
