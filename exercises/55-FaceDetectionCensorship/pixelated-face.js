@@ -8,4 +8,15 @@ const faceCtx = canvas.getContext("2d");
 
 const faceDetector = new window.FaceDetector();
 
-console.log(video, canvas, faceCanvas, faceDetector);
+//write a functio that populate teh users video
+async function populateVideo() {
+  const stream = await navigator.mediaDevices.getUserMedia({
+    video: {
+      width: 1280,
+      height: 720,
+    },
+  });
+  video.srcObject = stream;
+  await video.play();
+}
+populateVideo();
