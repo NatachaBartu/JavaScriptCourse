@@ -36,6 +36,7 @@ async function detect() {
 
 function drawFace(face) {
   const { width, height, top, left } = face.boundingBox;
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.strokeRect(left, top, width, height);
   ctx.strokeStyle = "red";
   ctx.lineWidth = 2;
