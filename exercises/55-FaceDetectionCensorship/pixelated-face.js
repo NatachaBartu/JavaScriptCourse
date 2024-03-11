@@ -7,11 +7,20 @@ const faceCanvas = document.querySelector(".face");
 const faceCtx = faceCanvas.getContext("2d");
 
 const faceDetector = new window.FaceDetector();
+const optionsInputs = document.querySelectorAll(
+  '.controls input[type="range"]'
+);
 
 const options = {
   SIZE: 10,
   SCALE: 1.35,
 };
+
+function handleOption(event) {
+  const { value, name } = event.currentTarget;
+  options[name] = parseFloat(value);
+}
+optionsInputs.forEach((input) => input.addEventListener("input", handleOption));
 
 //write a functio that populate teh users video
 async function populateVideo() {
@@ -33,10 +42,9 @@ async function populateVideo() {
 
 async function detect() {
   const faces = await faceDetector.detect(video);
+  //ask the browser when the next animation frame is, and tell it to run detect for us
   faces.forEach(drawFace);
   faces.forEach(censor);
-
-  //ask the browser when the next animation frame is, and tell it to run detect for us
   requestAnimationFrame(detect);
 }
 
@@ -49,6 +57,8 @@ function drawFace(face) {
 }
 
 function censor({ boundingBox: face }) {
+  faceCtx.imageSmoothingEnabled = false;
+  faceCtx.clearRect(0, 0, faceCanvas.width, faceCanvas.height);
   //draw the small face
   faceCtx.drawImage(
     //5 source args
