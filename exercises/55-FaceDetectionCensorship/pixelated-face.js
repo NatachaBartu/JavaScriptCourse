@@ -28,10 +28,17 @@ async function populateVideo() {
 
 async function detect() {
   const faces = await faceDetector.detect(video);
-  console.log(faces);
+  faces.forEach(drawFace);
 
   //ask the browser when the next animation frame is, and tell it to run detect for us
   requestAnimationFrame(detect);
+}
+
+function drawFace(face) {
+  const { width, height, top, left } = face.boundingBox;
+  ctx.strokeRect(left, top, width, height);
+  ctx.strokeStyle = "red";
+  ctx.lineWidth = 2;
 }
 
 populateVideo().then(detect);
