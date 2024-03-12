@@ -73,14 +73,15 @@ const funkyLetters = {
 };
 
 const filters = {
-  sarcastic: function (letter, index) {
-    //if is odd number will return trufhy
+  sarcastic(letter, index) {
+    // if it is odd, it will return 1, and that is truthy, so this if statement will trip
     if (index % 2) {
       return letter.toUpperCase();
     }
+    // if it is even, it will return zero and we will lowercase it
     return letter.toLowerCase();
   },
-  funky: function (letter) {
+  funky(letter) {
     // first check if there is a funky letter for this case
     let funkyLetter = funkyLetters[letter];
     if (funkyLetter) return funkyLetter;
@@ -90,14 +91,27 @@ const filters = {
     // if there is nothing, return the regular letter
     return letter;
   },
-  unable: function () {},
+  unable(letter) {
+    const random = Math.floor(Math.random() * 3);
+    if (letter === " " && random === 2) {
+      return "...";
+    }
+    return letter;
+  },
 };
 
 function transformText(text) {
+  // const filter = document.querySelector('[name="filter"]:checked').value;
   const filter = filterInputs.find((input) => input.checked).value;
-  //greab the text and loop over each letter
-  const modified = Array.from(text).map(filters.sarcastic);
-  result.textContent = modified.join("");
+  // take the text, and loop over each letter.
+  const mod = Array.from(text).map(filters[filter]);
+  result.textContent = mod.join("");
 }
 
 textArea.addEventListener("input", (e) => transformText(e.target.value));
+
+filterInputs.forEach((input) =>
+  input.addEventListener("input", () => {
+    transformText(textArea.value);
+  })
+);
