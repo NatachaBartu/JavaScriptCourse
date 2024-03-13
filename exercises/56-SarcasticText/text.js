@@ -1,4 +1,3 @@
-//const funkyLetters = require("./funkyLetters.json");
 const textArea = document.querySelector('[name="text"]');
 const result = document.querySelector(".result");
 const filterInputs = Array.from(document.querySelectorAll('[name="filter"]'));
